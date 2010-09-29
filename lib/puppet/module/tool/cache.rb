@@ -33,7 +33,7 @@ module Puppet::Module::Tool
 
     # Return contents of file at the given URI's +uri+.
     def read_retrieve(uri)
-      return uri.read
+      return Puppet::Module::Tool.http_handle.get(Puppet::Module::Tool::Utils::URI.normalize(uri))
     end
 
     # Return Pathname for repository's cache directory, create it if needed.

@@ -67,6 +67,18 @@ module Puppet
       def self.changelog_filename
         return File.expand_path(File.join(self.root, 'CHANGES.markdown'))
       end
+
+      # Return an Net::HTTP-compatible handle, with automatic HTTP_PROXY support.
+      def self.http_handle
+        @http_handle ||= begin
+          if url = ENV['http_proxy'] || ENV['HTTP_PROXY']
+            uri = URI.parse(url)
+            Net::HTTP::Proxy(uri.host, uri.port, uri.user, uri.password)
+          else
+            Net::HTTP
+          end
+        end
+      end
     end
   end
 end

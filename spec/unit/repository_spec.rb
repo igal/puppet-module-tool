@@ -8,7 +8,7 @@ describe Puppet::Module::Tool::Repository do
 
     describe '#contact' do
       before do
-        Net::HTTP.expects(:start)
+        Puppet::Module::Tool.http_handle.expects(:start)
       end
       context "when not given an :authenticate option" do
         it "should authenticate" do

@@ -1,4 +1,3 @@
-require 'open-uri'
 require 'pathname'
 require 'tmpdir'
 
@@ -74,7 +73,7 @@ module Puppet::Module::Tool
       end
 
       def read_match(url)
-        return url.read
+        return Puppet::Module::Tool.http_handle.get(Puppet::Module::Tool::Utils::URI.normalize(url))
       end
 
     end

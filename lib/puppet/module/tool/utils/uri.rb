@@ -10,6 +10,7 @@ module Puppet::Module::Tool
           url :
           ::URI.parse(url)
       end
+      module_function :normalize
 
     end
   end

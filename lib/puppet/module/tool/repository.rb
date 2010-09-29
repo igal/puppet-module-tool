@@ -35,7 +35,7 @@ module Puppet::Module::Tool
 
     # Return a Net::HTTPResponse read from this HTTPRequest +request+.
     def read_contact(request)
-      Net::HTTP.start(@uri.host, @uri.port) do |http|
+      Puppet::Module::Tool.http_handle.start(@uri.host, @uri.port) do |http|
         http.request(request)
       end
     end
